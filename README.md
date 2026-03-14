@@ -10,7 +10,7 @@ A Chrome extension (Manifest V3) that provides one-click hard reload for the act
 ## Install
 
 1. Clone or download this repo
-2. Open `chrome://extensions` in Chrome
+2. Open `chrome://extensions` in Chrome or any Chromium-based browser (Edge, Brave, Arc, etc.)
 3. Enable **Developer mode** (top-right toggle)
 4. Click **Load unpacked** and select the project folder
 
