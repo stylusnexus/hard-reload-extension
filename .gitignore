@@ -1,3 +1,4 @@
 .claude/settings.local.json
 .claude/auto-memory/dirty-files
 .vscode/settings.json
+hard-reload-extension.code-workspace
