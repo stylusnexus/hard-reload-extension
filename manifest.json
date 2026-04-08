@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Hard Reload",
   "version": "1.0.0",
-  "description": "Hard reload or hard reload + clear cache with one click",
-  "permissions": ["tabs", "browsingData"],
+  "description": "One-click hard reload with optional browser storage clearing. Useful to quickly refresh cached assets during dev work.",
+  "permissions": ["tabs", "browsingData", "scripting", "activeTab"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
@@ -21,5 +21,13 @@
   },
   "background": {
     "service_worker": "background.js"
+  },
+  "commands": {
+    "hard-reload": {
+      "suggested_key": {
+        "default": "Alt+Shift+R"
+      },
+      "description": "Hard reload the current tab"
+    }
   }
 }

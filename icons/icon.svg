@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="arrow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4cc9f0"/>
+      <stop offset="100%" style="stop-color:#7b2ff7"/>
+    </linearGradient>
+    <linearGradient id="bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f72585"/>
+      <stop offset="100%" style="stop-color:#ff6b6b"/>
+    </linearGradient>
+  </defs>
+  <!-- Circular reload arrow (270-degree arc) — no background -->
+  <path d="M 64 18 A 46 46 0 1 1 18 64" fill="none" stroke="url(#arrow)" stroke-width="12" stroke-linecap="round"/>
+  <!-- Arrowhead at the end of the arc -->
+  <polygon points="18,44 18,78 38,61" fill="url(#arrow)"/>
+  <!-- Lightning bolt in center -->
+  <polygon points="76,36 54,68 68,68 52,98 80,62 66,62" fill="url(#bolt)"/>
+</svg>

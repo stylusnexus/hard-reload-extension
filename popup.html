@@ -3,6 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    /* Light theme (default) */
+    :root {
+      --bg: #f0f0f5;
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.1);
+      --text-primary: #1a1a2e;
+      --text-secondary: #555770;
+      --text-muted: #787a90;
+      --heading-color: #1a1a2e;
+      --tooltip-bg: #ffffff;
+      --tooltip-border: rgba(0, 0, 0, 0.12);
+      --tooltip-text: #555770;
+      --tooltip-shadow: rgba(0, 0, 0, 0.12);
+      --divider-color: rgba(76, 201, 240, 0.25);
+      --feedback-color: #0891b2;
+      --focus-ring: rgba(76, 201, 240, 0.6);
+      --help-icon: #9196a6;
+      --help-icon-hover: #555770;
+      --checkbox-border: rgba(0, 0, 0, 0.25);
+      --checkbox-bg: rgba(0, 0, 0, 0.04);
+      --option-label-color: #555770;
+      --icon-wrap-cyan-bg: rgba(76, 201, 240, 0.12);
+      --icon-wrap-cyan-hover: rgba(76, 201, 240, 0.2);
+      --icon-wrap-pink-bg: rgba(247, 37, 133, 0.1);
+      --icon-wrap-pink-hover: rgba(247, 37, 133, 0.18);
+      --hover-gradient-cyan: rgba(76, 201, 240, 0.06);
+      --hover-gradient-pink: rgba(247, 37, 133, 0.06);
+      --hover-border-cyan: rgba(76, 201, 240, 0.4);
+      --hover-shadow-cyan: rgba(76, 201, 240, 0.12);
+      --hover-border-pink: rgba(247, 37, 133, 0.4);
+      --hover-shadow-pink: rgba(247, 37, 133, 0.12);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #363658;
+        --card-bg: #1e1e38;
+        --card-border: rgba(255, 255, 255, 0.1);
+        --text-primary: #c8cdd8;
+        --text-secondary: #9196a6;
+        --text-muted: #b0b5c0;
+        --heading-color: #ffffff;
+        --tooltip-bg: #1e1e32;
+        --tooltip-border: rgba(255, 255, 255, 0.1);
+        --tooltip-text: #a0a6b4;
+        --tooltip-shadow: rgba(0, 0, 0, 0.4);
+        --divider-color: rgba(76, 201, 240, 0.2);
+        --feedback-color: #4cc9f0;
+        --focus-ring: rgba(76, 201, 240, 0.6);
+        --help-icon: #5a6070;
+        --help-icon-hover: #8892a4;
+        --checkbox-border: rgba(255, 255, 255, 0.3);
+        --checkbox-bg: rgba(255, 255, 255, 0.08);
+        --option-label-color: #b0b5c0;
+        --icon-wrap-cyan-bg: rgba(76, 201, 240, 0.1);
+        --icon-wrap-cyan-hover: rgba(76, 201, 240, 0.15);
+        --icon-wrap-pink-bg: rgba(247, 37, 133, 0.1);
+        --icon-wrap-pink-hover: rgba(247, 37, 133, 0.15);
+        --hover-gradient-cyan: rgba(76, 201, 240, 0.06);
+        --hover-gradient-pink: rgba(247, 37, 133, 0.06);
+        --hover-border-cyan: rgba(76, 201, 240, 0.35);
+        --hover-shadow-cyan: rgba(76, 201, 240, 0.1);
+        --hover-border-pink: rgba(247, 37, 133, 0.35);
+        --hover-shadow-pink: rgba(247, 37, 133, 0.1);
+      }
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -10,92 +77,351 @@
     }
 
     body {
-      width: 260px;
+      width: 310px;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #1a1a2e;
-      color: #e0e0e0;
-      padding: 16px;
+      background: var(--bg);
+      color: var(--text-primary);
+      padding: 14px 20px 10px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .header-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
     }
 
     h1 {
-      font-size: 14px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 14px;
-      color: #ffffff;
-      letter-spacing: 0.5px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--heading-color);
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--divider-color), transparent);
+      margin-bottom: 10px;
+    }
+
+    /* Button card wrapper */
+    .btn-row {
+      position: relative;
+    }
+
+    .btn-row + .btn-row {
+      margin-top: 8px;
+    }
+
+    .btn-row.has-options {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding-bottom: 10px;
+    }
+
+    .btn-row.has-options .btn {
+      border: none;
+      border-radius: 10px 10px 0 0;
+      background: transparent;
     }
 
     .btn {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       width: 100%;
-      padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      background: #16213e;
-      color: #e0e0e0;
+      padding: 10px 36px 10px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      background: var(--card-bg);
+      color: var(--text-primary);
       font-size: 13px;
-      font-weight: 500;
+      font-family: inherit;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: left;
+      position: relative;
     }
 
-    .btn:hover {
-      background: #0f3460;
-      border-color: rgba(255, 255, 255, 0.15);
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
       transform: translateY(-1px);
     }
 
+    .btn:focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 2px;
+    }
+
+    @keyframes press {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.96); }
+      100% { transform: scale(1); }
+    }
+
     .btn:active {
-      transform: translateY(0);
+      animation: press 0.15s ease;
     }
 
-    .btn + .btn {
-      margin-top: 8px;
-    }
-
-    .btn-icon {
-      font-size: 18px;
+    .btn-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .btn-icon-wrap svg {
+      width: 18px;
+      height: 18px;
     }
 
     .btn-text {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 3px;
+      flex: 1;
     }
 
     .btn-label {
       font-weight: 600;
-      color: #ffffff;
+      font-size: 13px;
+      color: var(--heading-color);
+      transition: color 0.2s ease;
     }
 
     .btn-desc {
       font-size: 11px;
-      color: #8892a4;
+      color: var(--text-secondary);
+      line-height: 1.3;
     }
 
-    .btn.hard-reload:hover {
-      border-color: #4cc9f0;
-      box-shadow: 0 0 12px rgba(76, 201, 240, 0.15);
+    /* Hard Reload button */
+    .btn.hard-reload .btn-icon-wrap {
+      background: var(--icon-wrap-cyan-bg);
     }
 
-    .btn.clear-cache:hover {
-      border-color: #f72585;
-      box-shadow: 0 0 12px rgba(247, 37, 133, 0.15);
+    .btn.hard-reload .btn-icon-wrap svg {
+      color: #4cc9f0;
+    }
+
+    .btn.hard-reload::before {
+      background: linear-gradient(135deg, var(--hover-gradient-cyan), transparent);
+    }
+
+    .btn.hard-reload:hover,
+    .btn.hard-reload:focus-visible {
+      border-color: var(--hover-border-cyan);
+      box-shadow: 0 4px 16px var(--hover-shadow-cyan), 0 0 0 1px rgba(76, 201, 240, 0.05);
+    }
+
+    .btn.hard-reload:hover::before,
+    .btn.hard-reload:focus-visible::before {
+      opacity: 1;
+    }
+
+    .btn.hard-reload:hover .btn-icon-wrap,
+    .btn.hard-reload:focus-visible .btn-icon-wrap {
+      background: var(--icon-wrap-cyan-hover);
+    }
+
+    .btn.hard-reload:hover .btn-label,
+    .btn.hard-reload:focus-visible .btn-label {
+      color: #4cc9f0;
+    }
+
+    /* Clear Cache button */
+    .btn.clear-cache .btn-icon-wrap {
+      background: var(--icon-wrap-pink-bg);
+    }
+
+    .btn.clear-cache .btn-icon-wrap svg {
+      color: #f72585;
+    }
+
+    .btn.clear-cache::before {
+      background: linear-gradient(135deg, var(--hover-gradient-pink), transparent);
+    }
+
+    .btn.clear-cache:hover,
+    .btn.clear-cache:focus-visible {
+      border-color: var(--hover-border-pink);
+      box-shadow: 0 4px 16px var(--hover-shadow-pink), 0 0 0 1px rgba(247, 37, 133, 0.05);
+    }
+
+    .btn.clear-cache:hover::before,
+    .btn.clear-cache:focus-visible::before {
+      opacity: 1;
+    }
+
+    .btn.clear-cache:hover .btn-icon-wrap,
+    .btn.clear-cache:focus-visible .btn-icon-wrap {
+      background: var(--icon-wrap-pink-hover);
+    }
+
+    .btn.clear-cache:hover .btn-label,
+    .btn.clear-cache:focus-visible .btn-label {
+      color: #f72585;
+    }
+
+    /* Help tooltip — positioned outside button to avoid overflow clipping */
+    .btn-help {
+      position: absolute;
+      top: 50%;
+      right: 14px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--help-icon);
+      cursor: default;
+      transition: color 0.2s ease;
+      z-index: 5;
+    }
+
+    .btn-help:hover,
+    .btn-help:focus-visible {
+      color: var(--help-icon-hover);
+    }
+
+    .btn-help:focus-visible {
+      outline: 1px solid rgba(76, 201, 240, 0.5);
+      outline-offset: 2px;
+      border-radius: 50%;
+    }
+
+    .btn-help svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: -8px;
+      width: 210px;
+      padding: 10px 12px;
+      background: var(--tooltip-bg);
+      border: 1px solid var(--tooltip-border);
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--tooltip-text);
+      box-shadow: 0 8px 24px var(--tooltip-shadow);
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      right: 14px;
+      border: 5px solid transparent;
+      border-bottom-color: var(--tooltip-bg);
+    }
+
+    .btn-help:hover .tooltip,
+    .btn-help:focus .tooltip,
+    .btn-help:focus-visible .tooltip {
+      display: block;
+    }
+
+    /* localStorage checkbox option — inside clear-cache card */
+    .option-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      padding: 4px 14px 0 62px;
+    }
+
+    .option-row label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .option-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--checkbox-border);
+      border-radius: 3px;
+      background: var(--checkbox-bg);
+      cursor: pointer;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .option-row input[type="checkbox"]:hover {
+      border-color: rgba(247, 37, 133, 0.4);
+      background: rgba(247, 37, 133, 0.08);
+    }
+
+    .option-row input[type="checkbox"]:focus-visible {
+      outline: 2px solid rgba(247, 37, 133, 0.5);
+      outline-offset: 2px;
+    }
+
+    .option-row input[type="checkbox"]:checked {
+      background: rgba(247, 37, 133, 0.25);
+      border-color: rgba(247, 37, 133, 0.5);
+    }
+
+    .option-row input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 3.5px;
+      top: 1px;
+      width: 4px;
+      height: 7px;
+      border: solid #f72585;
+      border-width: 0 1.5px 1.5px 0;
+      transform: rotate(45deg);
+    }
+
+    .option-row .option-label {
+      font-size: 11px;
+      color: var(--option-label-color);
+      line-height: 1;
     }
 
     .feedback {
       text-align: center;
       font-size: 11px;
-      margin-top: 10px;
-      height: 16px;
-      color: #4cc9f0;
+      margin-top: 6px;
+      height: 14px;
+      color: var(--feedback-color);
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transition: opacity 0.25s ease;
+      font-weight: 500;
     }
 
     .feedback.show {
@@ -104,23 +430,79 @@
   </style>
 </head>
 <body>
-  <h1>Hard Reload</h1>
+  <div class="header">
+    <svg class="header-icon" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="h-arrow" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#4cc9f0"/>
+          <stop offset="100%" style="stop-color:#7b2ff7"/>
+        </linearGradient>
+        <linearGradient id="h-bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#f72585"/>
+          <stop offset="100%" style="stop-color:#ff6b6b"/>
+        </linearGradient>
+      </defs>
+      <path d="M 64 18 A 46 46 0 1 1 18 64" fill="none" stroke="url(#h-arrow)" stroke-width="12" stroke-linecap="round"/>
+      <polygon points="18,44 18,78 38,61" fill="url(#h-arrow)"/>
+      <polygon points="76,36 54,68 68,68 52,98 80,62 66,62" fill="url(#h-bolt)"/>
+    </svg>
+    <h1>Hard Reload</h1>
+  </div>
 
-  <button class="btn hard-reload" id="hardReload">
-    <span class="btn-icon">🔄</span>
-    <span class="btn-text">
-      <span class="btn-label">Hard Reload</span>
-      <span class="btn-desc">Bypass cache and reload page</span>
-    </span>
-  </button>
+  <div class="divider"></div>
 
-  <button class="btn clear-cache" id="clearCacheReload">
-    <span class="btn-icon">🧹</span>
-    <span class="btn-text">
-      <span class="btn-label">Clear Cache + Reload</span>
-      <span class="btn-desc">Wipe all cache then hard reload</span>
+  <div class="btn-row">
+    <button class="btn hard-reload" id="hardReload">
+      <span class="btn-icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.5 2.5v5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 7.5A7 7 0 1 1 3 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Hard Reload</span>
+        <span class="btn-desc">Bypass cache and reload page</span>
+      </span>
+    </button>
+    <span class="btn-help" tabindex="0" role="button" aria-label="Help" aria-describedby="tip-hard-reload">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M6 6.2a2 2 0 0 1 3.9.6c0 1.1-1.5 1.4-1.5 2.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="8" cy="11.5" r="0.7" fill="currentColor"/>
+      </svg>
+      <span class="tooltip" id="tip-hard-reload" role="tooltip">Reloads the current tab while ignoring cached files. Same as Ctrl+Shift+R. Does not delete any stored data.</span>
     </span>
-  </button>
+  </div>
+
+  <div class="btn-row has-options">
+    <button class="btn clear-cache" id="clearCacheReload">
+      <span class="btn-icon-wrap" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.5 2.5v5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3.5 7.5A7 7 0 1 1 3 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M9 8l4 4M13 8l-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="btn-text">
+        <span class="btn-label">Clear Cache + Reload</span>
+        <span class="btn-desc">Clear site cache, then hard reload</span>
+      </span>
+    </button>
+    <span class="btn-help" tabindex="0" role="button" aria-label="Help" aria-describedby="tip-clear-cache">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M6 6.2a2 2 0 0 1 3.9.6c0 1.1-1.5 1.4-1.5 2.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <circle cx="8" cy="11.5" r="0.7" fill="currentColor"/>
+      </svg>
+      <span class="tooltip" id="tip-clear-cache" role="tooltip">Clears the HTTP cache (images, scripts, stylesheets) for the current site only, then hard reloads. Optionally clears localStorage and sessionStorage too. Does not touch cookies, passwords, or history.</span>
+    </span>
+    <div class="option-row">
+      <label>
+        <input type="checkbox" id="includeLocalStorage">
+        <span class="option-label">Include localStorage &amp; sessionStorage</span>
+      </label>
+    </div>
+  </div>
 
   <div class="feedback" id="feedback"></div>
 
